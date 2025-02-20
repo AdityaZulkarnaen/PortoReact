@@ -52,7 +52,7 @@ const Navbar = () => {
           </li>
         </ul>
 
-        <div className="flex space-x-10 text-white text-xl">
+        <div className="flex space-x-10 text-white text-xl" style={{fontFamily: 'reg'}}>
           <a href="">Home</a>
           <a href="">Skills</a>
           <a href="">Projects</a>

@@ -1,4 +1,25 @@
 @import "tailwindcss";
+
+@theme{
+  --font-PP: "PPMori-SemiBold", "Poppins";
+}
+
+@font-face {
+  font-family: "pp";
+  src: url("./assets/font/PPMori-SemiBold.otf"), format("otf");
+}
+
+@font-face {
+  font-family: "reg";
+  src: url("./assets/font/PPMori-Regular.otf"), format("otf");
+}
+
+@font-face {
+  font-family: "bogart";
+  src: url("./assets/font/bogart.otf"), format("otf");
+}
+
 :root {
   background-color: rgb(30, 30, 30);
 }
+
