@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <nav 
-      className={`fixed top-8 left-1/2 transform -translate-x-1/2 transition-all duration-700 ease-in-out 
+      className={`fixed top-8 left-1/2 transform -translate-x-1/2 transition-all duration-500 ease-in-out 
         ${isHovered 
           ? 'w-3/5 h-20 bg-black rounded-3xl px-8' 
           : 'w-48 h-10 bg-black rounded-[20px] p-2'

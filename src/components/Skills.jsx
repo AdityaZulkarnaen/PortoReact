@@ -12,9 +12,9 @@ import python from '../assets/python.svg'
 
 const Skills = () => {
   return (
-    <section className='h-screen w-11/12 justify-self-center'>
+    <section className='h-screen w-[100%] justify-self-center'>
         <div className='h-4/5' >
-            <div className='text-9xl text-white justify-self-center mt-50 mb-20' style={{fontFamily: 'bogart'}}>
+            <div className='text-9xl text-white justify-self-center mb-20' style={{fontFamily: 'bogart'}}>
                 My Speciality
             </div>
             <div className='w-[98%] h-[98%] justify-self-center mt-15' style={{fontFamily: 'reg'}}>
