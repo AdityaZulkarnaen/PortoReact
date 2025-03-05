@@ -4,14 +4,15 @@ import Home from './components/Home'
 import Skills from './components/Skills'
 import AboutMe from './components/AboutMe'
 import Noise from './components/Noise'
+import Projects from './components/Projects'
 
 const App = () => {
   return (
     <>
     <Noise></Noise>
     <Home/>
-    <AboutMe/>
     <Skills/>
+    <Projects/>
     </>
   )
 }
