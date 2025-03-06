@@ -6,8 +6,8 @@ const Projects = () => {
   return (
     <div className='mt-60 w-full h-[1600px]'>
       <div className='w-full h-[800px]'>
-        <div className='text-white text-6xl flex justify-self-center' style={{fontFamily : 'grand'}}>Recent Work</div>
-        <div className='flex flex-wrap justify-center gap-20 w-[90%] justify-self-center h-full mt-10'>
+        <div className='text-white text-6xl flex justify-self-center' style={{fontFamily : 'grand'}}>Recent Works</div>
+        <div className='flex flex-wrap justify-center gap-20 w-[90%] justify-self-center h-full mt-15'>
             <div className='w-[35%] h-[70%] rounded-3xl flex justify-center items-center bg-[#FF6507]'>
               <img className='w-[40%] h-[70%] rounded-2xl' src={sate} alt="" />
             </div>

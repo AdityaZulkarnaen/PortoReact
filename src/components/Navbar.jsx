@@ -4,17 +4,17 @@ import insta from '../assets/icon/insta.png';
 import linkedin from '../assets/icon/linkedin.svg';
 
 const Navbar = () => {
-  const [isHovered, setIsHovered] = useState(false);
+  // const [isHovered, setIsHovered] = useState(false);
 
   return (
     <nav 
-      className={`fixed top-8 left-1/2 transform -translate-x-1/2 transition-all duration-500 ease-in-out 
-        ${isHovered 
-          ? 'w-3/5 h-20 bg-black rounded-3xl px-8' 
-          : 'w-48 h-10 bg-black rounded-[20px] p-2'
-        } flex items-center shadow-gray-800 shadow-lg`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className={`fixed top-8 left-1/2 transform -translate-x-1/2 transition-all duration-500 ease-in-out w-3/5 h-16 bg-black rounded-3xl px-8 flex items-center shadow-gray-800 shadow-lg`}
+        // ${isHovered 
+        //   ? 'w-3/5 h-20 bg-black rounded-3xl px-8' 
+        //   : 'w-48 h-8 bg-black rounded-[20px] p-2'
+        // }  
+      // onMouseEnter={() => setIsHovered(true)}
+      // onMouseLeave={() => setIsHovered(false)}
     >
       <style>
         {`
@@ -32,43 +32,42 @@ const Navbar = () => {
         `}
       </style>
 
-      <div className={`flex justify-between w-full items-center transition-all duration-500
-        ${isHovered ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+      <div className={`flex justify-between w-full items-center transition-all duration-700 opacity-100 scale-100`}>
         <ul className="flex space-x-6">
-          <li className='w-10 h-10'>
-            <a className='w-10 h-10' href="https://github.com/AdityaZulkarnaen" target='blank'>
-              <img src={github} alt="GitHub" className="w-10 h-10" />
+          <li className='w-8 h-8'>
+            <a className='w-8 h-8' href="https://github.com/AdityaZulkarnaen" target='blank'>
+              <img src={github} alt="GitHub" className="w-8 h-8" />
             </a>
           </li>
           <li>
             <a href="https://www.instagram.com/adlkyzkrnn/">
-              <img src={insta} alt="Instagram" className="w-10 h-10" />
+              <img src={insta} alt="Instagram" className="w-8 h-8" />
             </a>
           </li>
           <li>
             <a href="https://www.linkedin.com/in/aditya-zulkarnaen-7596142a8/">
-              <img src={linkedin} alt="LinkedIn" className="w-10 h-10" />
+              <img src={linkedin} alt="LinkedIn" className="w-8 h-8" />
             </a>
           </li>
         </ul>
 
-        <div className="flex space-x-10 text-white text-xl" style={{fontFamily: 'reg'}}>
+        <div className="flex space-x-8 text-white text-lg" style={{fontFamily: 'reg'}}>
           <a href="">Home</a>
           <a href="">Skills</a>
           <a href="">Projects</a>
-          <a href="">Contact Me</a>
+          <a href="">Experience</a>
         </div>
       </div>
 
       {/* Dynamic Island style collapsed state */}
-      <div className={`absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 
+      {/* <div className={`absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 
         transition-all duration-400 w-full flex items-center gap-25 ml-3
         ${isHovered ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
         <div className="flex">
           <div className="w-5 h-5 bg-green-500 rounded-full animate-pulse"></div>
         </div>
         
-        {/* Rhythm Bars */}
+      
         <div className="flex gap-1 items-center h-6">
           <div className="w-1 bg-white rounded-full rhythm-1"></div>
           <div className="w-1 bg-white rounded-full rhythm-2"></div>
@@ -76,7 +75,7 @@ const Navbar = () => {
           <div className="w-1 bg-white rounded-full rhythm-4"></div>
           <div className="w-1 bg-white rounded-full rhythm-5"></div>
         </div>
-      </div>
+      </div> */}
     </nav>
   );
 };

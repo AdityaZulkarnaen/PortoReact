@@ -4,7 +4,7 @@ const Experience = () => {
   return (
     <div className='w-full h-[1000px] flex justify-center'>
         <div className='w-[85%] h-screen space-y-10'>
-            <div className='text-6xl text-white' style={{fontFamily: 'grand'}}>Past Experience</div>
+            <div className='text-6xl text-white' style={{fontFamily: 'grand'}}>Past Experiences</div>
             <div>
                 <div className='text-3xl text-white' style={{fontFamily: 'pp'}}>Software Programmer</div>
                 <div className='text-white text-2xl' style={{fontFamily: 'reg'}}>GAMAFORCE</div>

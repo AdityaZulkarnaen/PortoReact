@@ -11,6 +11,7 @@ const App = () => {
   return (
     <>
     <Noise></Noise>
+    <Navbar></Navbar>
     <Home/>
     <Skills/>
     <Projects/>
