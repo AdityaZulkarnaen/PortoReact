@@ -16,7 +16,7 @@ const Skills = () => {
   return (
     <section className='h-screen w-[100%] justify-self-center mt-60'>
         <div className='h-full' >
-            <div className='text-9xl text-white justify-self-center mb-20' style={{fontFamily: 'bogart'}}>
+            <div className='text-9xl text-white justify-self-center mb-20' style={{fontFamily: 'grand'}}>
                 My Speciality
             </div>
             <div className='w-full h-full justify-self-center mt-5' style={{fontFamily: 'reg'}}>

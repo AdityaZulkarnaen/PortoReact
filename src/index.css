@@ -19,6 +19,11 @@
   src: url("./assets/font/bogart.otf"), format("otf");
 }
 
+@font-face {
+    font-family: "grand";
+    src: url("./assets/font/grand.ttf"), format("ttf");
+  }
+
 :root {
   background-color: rgb(13, 13, 13);
 }
