@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import github from '../assets/github-logo.png';
-import insta from '../assets/insta.png';
-import linkedin from '../assets/linkedin.svg';
+import github from '../assets/icon/github-logo.png';
+import insta from '../assets/icon/insta.png';
+import linkedin from '../assets/icon/linkedin.svg';
 
 const Navbar = () => {
   const [isHovered, setIsHovered] = useState(false);
