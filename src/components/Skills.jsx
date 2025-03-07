@@ -3,7 +3,7 @@ import github from '../assets/icon/github-logo.png';
 import react from '../assets/icon/react.svg';
 import tailwind from '../assets/icon/tailwind.svg';
 import express from '../assets/icon/express.svg';
-import js from '../assets/icon/JavaScript.svg';
+import js from '../assets/icon/javascript.svg';
 import sql from '../assets/icon/sql.svg';
 import html from '../assets/icon/html-1.svg';
 import css from '../assets/icon/css.svg';
