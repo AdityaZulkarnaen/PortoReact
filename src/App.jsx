@@ -1,12 +1,12 @@
 import React from 'react'
-import Navbar from './components/navbar'
-import Home from './components/Home'
-import Skills from './components/Skills'
-import AboutMe from './components/AboutMe'
-import Noise from './components/Noise'
-import Projects from './components/Projects'
-import Experience from './components/Experience'
-import Contact from './components/Contact'
+import Navbar from './components/Navbar.jsx'
+import Home from './components/Home.jsx'
+import Skills from './components/Skills.jsx'
+import AboutMe from './components/AboutMe.jsx'
+import Noise from './components/Noise.jsx'
+import Projects from './components/Projects.jsx'
+import Experience from './components/Experience.jsx'
+import Contact from './components/Contact.jsx'
 
 const App = () => {
   return (
