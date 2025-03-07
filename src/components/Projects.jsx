@@ -79,38 +79,38 @@ const Projects = () => {
           Recent Works
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+        <div className="flex flex-wrap justify-center gap-[5%] max-w-7xl justify-self-center space-y-[5%] h-full mt-15'">
           {/* First row: two projects side by side on larger screens */}
           <div 
-            className="w-full aspect-video md:aspect-auto md:h-64 lg:h-80 rounded-2xl flex justify-center items-center bg-[#FF6507] cursor-pointer hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300"
+            className="w-full aspect-[2/1] md:aspect-auto md:h-64 lg:h-132 lg:w-[30%] rounded-2xl flex justify-center items-center bg-[#FF6507] cursor-pointer hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300"
             onClick={() => setSelectedProject(projects[0])}
           >
-            <img className="w-2/5 h-4/5 rounded-xl object-contain" src={sate} alt="SATE Project" />
+            <img className="w-fit h-[63%] rounded-xl object-contain" src={sate} />
           </div>
           
           <div 
-            className="w-full aspect-video md:aspect-auto md:h-64 lg:h-80 rounded-2xl bg-[#001F54] flex justify-center items-center cursor-pointer hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300"
+            className="w-full aspect-video md:aspect-auto md:h-64 lg:h-132 lg:w-[65%] rounded-2xl bg-[#001F54] flex justify-center items-center cursor-pointer hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300"
             onClick={() => setSelectedProject(projects[1])}
           >
-            <img className="w-4/5 h-4/5 rounded-xl object-contain" src={scholar} alt="Scholar Project" />
+            <img className="w-fit h-[63%] rounded-xl object-contain" src={scholar} alt="Scholar Project" />
           </div>
           
           {/* Second row: larger project and coming soon box */}
           <div 
-            className="w-full col-span-1 md:col-span-2 aspect-video md:h-64 lg:h-80 rounded-2xl bg-yellow-500 flex justify-center items-center cursor-pointer hover:shadow-lg hover:shadow-yellow-300/30 transition-all duration-300 mt-4 md:mt-6"
+            className="w-full col-span-1 md:col-span-2 aspect-video md:h-64 lg:h-[70%] lg:w-[65%] rounded-2xl bg-yellow-500 flex justify-center items-center cursor-pointer hover:shadow-lg hover:shadow-yellow-300/30 transition-all duration-300 mt-4 md:mt-6"
             onClick={() => setSelectedProject(projects[2])}
           >
-            <img className="w-4/5 h-4/5 rounded-xl object-contain" src={Job} alt="Job Finder Project" />
+            <img className="w-fit h-[61%] rounded-xl object-contain" src={Job} alt="Job Finder Project" />
           </div>
           
-          <div className="w-full col-span-1 md:col-span-2 aspect-video md:h-64 lg:h-80 rounded-2xl bg-red-500 flex items-center justify-center relative flex-col overflow-hidden group mt-4 md:mt-6">
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center p-4">
+          <div className="w-full col-span-1 md:col-span-2 aspect-video md:h-64 lg:h-118 lg:w-[30%] rounded-2xl bg-red-500 flex items-center justify-center relative flex-col overflow-hidden group mt-4 md:mt-6">
+            <div className="absolute inset-0 bg-black h-full bg-opacity-50 flex flex-col items-center justify-center p-4">
               <h3 className="text-2xl md:text-4xl text-white font-bold mb-4" style={{fontFamily: 'grand'}}>Coming Soon!</h3>
               <p className="text-base md:text-xl text-white text-center px-6" style={{fontFamily: 'reg'}}>
                 My next exciting project is currently in development
               </p>
             </div>
-            <img className="opacity-40 object-cover" src={soon} alt="Coming Soon" />
+            <img className="opacity-40 object-cover lg:w-full md:w-fit" src={soon} alt="Coming Soon" />
           </div>
         </div>
       </div>

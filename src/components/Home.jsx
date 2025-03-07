@@ -32,7 +32,7 @@ const Home = () => {
   };
 
   return (
-    <section id="home" className="w-full min-h-screen px-4 md:px-8 lg:px-12 pt-20 md:pt-24 pb-12 bg-[rgb(30, 30, 30)]">
+    <section id="home" className="w-full min-h-screen mt-15 px-4 md:px-8 lg:px-12 pt-20 md:pt-24 pb-12 bg-[rgb(30, 30, 30)]">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8 lg:space-x-16">
           {/* Image carousel - takes full width on mobile, then appropriate size on larger screens */}

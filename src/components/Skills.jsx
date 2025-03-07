@@ -44,7 +44,7 @@ const Skills = () => {
           My Specialities
         </h2>
         
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex flex-wrap justify-between lg:gap-10 md:gap-4">
           {skillsList.map((skill, index) => (
             <SkillItem key={index} icon={skill.icon} name={skill.name} />
           ))}
