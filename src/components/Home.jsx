@@ -8,6 +8,16 @@ const Home = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const images = [pp1, pp2, pp3, pp4];
   const timerRef = useRef(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Simulasi loading
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const startTimer = () => {
     clearInterval(timerRef.current);
@@ -32,7 +42,7 @@ const Home = () => {
   };
 
   return (
-    <section id="home" className="w-full min-h-screen mt-15 px-4 md:px-8 lg:px-12 pt-20 md:pt-24 pb-12 bg-[rgb(30, 30, 30)]">
+    <section id="home" className={`w-full min-h-screen mt-15 px-4 md:px-8 lg:px-12 pt-20 md:pt-24 pb-12 bg-[rgb(30, 30, 30)] transition-all duration-700 ${!isLoaded ? 'blur-xl' : 'blur-none'}`}>
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8 lg:space-x-16">
           {/* Image carousel - takes full width on mobile, then appropriate size on larger screens */}
