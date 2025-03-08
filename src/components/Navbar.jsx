@@ -57,12 +57,12 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a href="https://www.instagram.com/adlkyzkrnn/">
+            <a href="https://www.instagram.com/adlkyzkrnn/" target='blank'>
               <img src={insta} alt="Instagram" className="w-8 h-8" />
             </a>
           </li>
           <li>
-            <a href="https://www.linkedin.com/in/aditya-zulkarnaen-7596142a8/">
+            <a href="https://www.linkedin.com/in/aditya-zulkarnaen-7596142a8/" target='blank'>
               <img src={linkedin} alt="LinkedIn" className="w-8 h-8" />
             </a>
           </li>

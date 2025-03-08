@@ -100,7 +100,7 @@ const Home = () => {
             <a 
               className="relative inline-block text-[#e1ff00] text-lg md:text-xl after:block after:h-[2px] after:w-0 after:bg-[#e1ff00] after:absolute after:left-0 after:bottom-0 after:transition-all after:duration-500 hover:after:w-full" 
               style={{fontFamily: 'reg'}} 
-              href="../../public/cvadit.pdf" 
+              href="/cvadit.pdf" 
               target='blank'
             >
               See my resume →
