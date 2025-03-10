@@ -1,4 +1,4 @@
-import React from 'react';
+import {useEffect, useState} from 'react';
 import github from '../assets/icon/github-logo.png';
 import react from '../assets/icon/react.svg';
 import tailwind from '../assets/icon/tailwind.svg';
@@ -22,6 +22,16 @@ const SkillItem = ({ icon, name }) => (
 );
 
 const Skills = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+    useEffect(() => {
+      // Simulasi loading
+      const timer = setTimeout(() => {
+        setIsLoaded(true);
+      }, 500);
+  
+      return () => clearTimeout(timer);
+    }, []);
   const skillsList = [
     { icon: html, name: 'HTML' },
     { icon: css, name: 'CSS' },
@@ -38,7 +48,7 @@ const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="w-full min-h-screen px-4 md:px-8 lg:px-12 py-16 md:py-20">
+    <section id="skills" className={`w-full min-h-screen px-4 md:px-8 lg:px-12 py-16 md:py-20 transition-all duration-700 ${!isLoaded ? 'blur-xl' : 'blur-none'}`}>
       <div className="max-w-7xl mx-auto">
         <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white text-center mb-12 md:mb-16" style={{fontFamily: 'grand'}}>
           My Specialities
