@@ -52,7 +52,7 @@ const Navbar = () => {
   return (
     <>
       <nav 
-        className={`fixed top-0 md:top-0 left-0 md:left-1/2 transform md:-translate-x-1/2 transition-all duration-500 ease-in-out w-full h-16 md:pt-2 lg:pt-2 bg-transparent backdrop-blur-md md:rounded-3xl px-4 md:px-8 flex items-center z-50 ${
+        className={`fixed top-0 md:top-0 left-0 md:left-1/2 transform md:-translate-x-1/2 transition-all duration-500 ease-in-out w-full h-16 md:pt-2 lg:pt-2 bg-transparent backdrop-blur-md px-4 md:px-8 flex items-center z-50 ${
           scrollPosition > 50 ? 'bg-black bg-opacity-90' : 'bg-black'
         }`}
       >
