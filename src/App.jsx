@@ -1,19 +1,18 @@
-import React from 'react'
 import Navbar from './components/Navbar.jsx'
-import Home from './components/Home.jsx'
-import Skills from './components/Skills.jsx'
-import AboutMe from './components/AboutMe.jsx'
 import Noise from './components/Noise.jsx'
-import Projects from './components/Projects.jsx'
-import Experience from './components/Experience.jsx'
-import Contact from './components/Contact.jsx'
+import Hero from './modules/hero'
+import AboutMe from './modules/about-me/index.jsx'
+import Skills from './modules/skill/index.jsx'
+import Projects from './modules/projects/index.jsx'
+import Experience from './modules/experience/index.jsx'
+import Contact from './modules/contact/index.jsx'
 
 const App = () => {
   return (
     <>
     <Noise></Noise>
     <Navbar></Navbar>
-    <div id="home"><Home/></div>
+    <div id="home"><Hero/></div>
     <div id="skills"><Skills/></div>
     <div id="projects"><Projects/></div>
     <div id="experience"><Experience/></div>

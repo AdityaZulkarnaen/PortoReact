@@ -1,16 +1,16 @@
 import {useEffect, useState} from 'react';
-import github from '../assets/icon/github-logo.png';
-import react from '../assets/icon/react.svg';
-import tailwind from '../assets/icon/tailwind.svg';
-import express from '../assets/icon/express.svg';
-import js from '../assets/icon/javascript.svg';
-import sql from '../assets/icon/sql.svg';
-import html from '../assets/icon/html-1.svg';
-import css from '../assets/icon/css.svg';
-import figma from '../assets/icon/figma.svg';
-import python from '../assets/icon/python.svg';
-import expo from '../assets/icon/expo.svg';
-import next from '../assets/icon/next.svg';
+import github from '../../assets/icon/github-logo.png';
+import react from '../../assets/icon/react.svg';
+import tailwind from '../../assets/icon/tailwind.svg';
+import express from '../../assets/icon/express.svg';
+import js from '../../assets/icon/javascript.svg';
+import sql from '../../assets/icon/sql.svg';
+import html from '../../assets/icon/html-1.svg';
+import css from '../../assets/icon/css.svg';
+import figma from '../../assets/icon/figma.svg';
+import python from '../../assets/icon/python.svg';
+import expo from '../../assets/icon/expo.svg';
+import next from '../../assets/icon/next.svg';
 
 const SkillItem = ({ icon, name }) => (
   <div className="w-full sm:w-[45%] md:w-[30%] lg:w-[22%] h-12 sm:h-14 border-purple-950 border-2 rounded-xl text-white mb-4 transform transition-transform duration-300 hover:scale-105 hover:shadow-md hover:shadow-purple-900">

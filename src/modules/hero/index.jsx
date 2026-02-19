@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import pp1 from '../assets/images/pp1.jpg';
-import pp2 from '../assets/images/pp2.jpg';
-import pp3 from '../assets/images/pp3.jpg';
-import pp4 from '../assets/images/pp4.jpg';
+import { useState, useEffect, useRef } from 'react';
+import pp1 from '../../assets/images/pp1.jpg';
+import pp2 from '../../assets/images/pp2.jpg';
+import pp3 from '../../assets/images/pp3.jpg';
+import pp4 from '../../assets/images/pp4.jpg';
 
 const Home = () => {
   const [currentImage, setCurrentImage] = useState(0);

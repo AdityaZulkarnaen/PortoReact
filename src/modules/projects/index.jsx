@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import sate from '../assets/images/sate.png';
-import scholar from '../assets/images/scholar.png';
-import Job from '../assets/images/Job.png';
-import soon from '../assets/images/soon.png';
+import { useState } from 'react';
+import sate from '../../assets/images/sate.png';
+import scholar from '../../assets/images/scholar.png';
+import Job from '../../assets/images/Job.png';
+import soon from '../../assets/images/soon.png';
 
 const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;

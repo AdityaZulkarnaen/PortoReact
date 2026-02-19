@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -36,6 +36,7 @@ const Contact = () => {
       }
     } catch (error) {
       setStatus('error');
+      console.error('Error sending message:', error);
     }
   };
   

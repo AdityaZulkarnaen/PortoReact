@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ExperienceItem = ({ title, company, period, description }) => (
   <div className="mb-12">
     <h3 className="text-2xl md:text-3xl text-white" style={{fontFamily: 'pp'}}>{title}</h3>
