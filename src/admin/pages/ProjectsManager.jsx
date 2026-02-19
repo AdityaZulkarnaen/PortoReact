@@ -18,7 +18,6 @@ const ProjectsManager = () => {
     live_url: '',
     image_url: '',
     image_path: '',
-    background_color: '#3B82F6',
     status: 'completed',
     featured: false,
     display_order: 0
@@ -133,7 +132,6 @@ const ProjectsManager = () => {
       live_url: '',
       image_url: '',
       image_path: '',
-      background_color: '#3B82F6',
       status: 'completed',
       featured: false,
       display_order: 0
@@ -198,7 +196,7 @@ const ProjectsManager = () => {
             {projects.map((project) => (
               <div key={project.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                 {/* Project Image */}
-                <div className="h-48 overflow-hidden" style={{ backgroundColor: project.background_color || '#3B82F6' }}>
+                <div className="h-48 bg-gray-100 overflow-hidden">
                   {project.image_url ? (
                     <img 
                       src={project.image_url} 
@@ -367,18 +365,7 @@ const ProjectsManager = () => {
                 </div>
 
                 {/* Settings */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Background Color
-                    </label>
-                    <input
-                      type="color"
-                      value={formData.background_color}
-                      onChange={(e) => setFormData(prev => ({ ...prev, background_color: e.target.value }))}
-                      className="w-full h-12 border border-gray-300 rounded-lg"
-                    />
-                  </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Status
@@ -402,6 +389,7 @@ const ProjectsManager = () => {
                       value={formData.display_order}
                       onChange={(e) => setFormData(prev => ({ ...prev, display_order: parseInt(e.target.value) }))}
                       className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      placeholder="0, 1, 2, 3..."
                     />
                   </div>
                 </div>

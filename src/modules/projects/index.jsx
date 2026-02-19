@@ -4,6 +4,7 @@ import sate from '../../assets/images/sate.png';
 import scholar from '../../assets/images/scholar.png';
 import Job from '../../assets/images/Job.png';
 import soon from '../../assets/images/soon.png';
+import { MoveRight , MoveLeft } from 'lucide-react';
 
 const ProjectCarousel = ({ projects, onProjectClick }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -32,7 +33,7 @@ const ProjectCarousel = ({ projects, onProjectClick }) => {
   };
 
   return (
-    <div className="relative w-full mt-12">
+    <div className="relative w-[90%] justify-self-center mt-12">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-3xl md:text-4xl text-white" style={{fontFamily: 'grand'}}>
           All Projects
@@ -42,13 +43,13 @@ const ProjectCarousel = ({ projects, onProjectClick }) => {
             onClick={prevSlide}
             className="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 flex items-center justify-center text-white transition-colors"
           >
-            ←
+            <MoveLeft className="w-5 h-5" />
           </button>
           <button
             onClick={nextSlide}
             className="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 flex items-center justify-center text-white transition-colors"
           >
-            →
+            <MoveRight className="w-5 h-5" />
           </button>
         </div>
       </div>
@@ -58,8 +59,8 @@ const ProjectCarousel = ({ projects, onProjectClick }) => {
           {getVisibleProjects().map((project, index) => (
             <div
               key={`${project.id}-${currentIndex}`}
-              className={`flex-shrink-0 w-full md:w-1/3 bg-gray-800 rounded-xl overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300 ${
-                index === 1 ? 'md:scale-105' : 'md:scale-95'
+              className={`flex-shrink-0 w-full md:w-[32.1%] bg-gray-800 rounded-xl overflow-hidden cursor-pointer hover:scale-100 transition-transform duration-300 ${
+                index === 1 ? 'md:scale-95' : 'md:scale-95'
               }`}
               onClick={() => onProjectClick(project)}
             >
@@ -312,8 +313,23 @@ const Projects = () => {
     return soon;
   };
 
-  const featuredProject = projects.find(p => p.featured) || projects[0];
+  const featuredProjects = projects.filter(p => p.featured).sort((a, b) => {
+    // Sort by display_order (ascending), then by created_at (descending) for projects without order
+    const orderA = a.display_order !== null && a.display_order !== undefined ? a.display_order : 999;
+    const orderB = b.display_order !== null && b.display_order !== undefined ? b.display_order : 999;
+    
+    if (orderA !== orderB) {
+      return orderA - orderB;
+    }
+    
+    // If same order or both null, sort by creation date (newest first)
+    return new Date(b.created_at || 0) - new Date(a.created_at || 0);
+  });
+  
   const allProjects = projects;
+
+  // If no featured projects from database, use fallback featured projects
+  const displayFeaturedProjects = featuredProjects.length > 0 ? featuredProjects : fallbackProjects.filter(p => p.featured);
 
   if (loading) {
     return (
@@ -333,18 +349,84 @@ const Projects = () => {
           Recent Works
         </h2>
         
-        {/* Featured Project */}
-        <FeaturedProject 
-          project={featuredProject} 
-          onProjectClick={setSelectedProject}
-        />
-        
-        {/* Projects Carousel */}
-        <ProjectCarousel 
-          projects={allProjects}
-          onProjectClick={setSelectedProject}
-        />
+        {/* Featured Projects Carousel */}
+        <div className="flex flex-wrap justify-center gap-[5%] max-w-7xl justify-self-center space-y-[5%] h-full mt-15'">
+          {/* First project - 3:4 aspect ratio on mobile */}
+          <div 
+            className="w-full aspect-[3/4] md:aspect-auto md:h-64 lg:h-132 lg:w-[30%] rounded-2xl flex justify-center items-center bg-[#FF6507] cursor-pointer hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300"
+            onClick={() => displayFeaturedProjects[0] && setSelectedProject(displayFeaturedProjects[0])}
+          >
+            {displayFeaturedProjects[0] ? (
+              <img className="w-fit h-[63%] rounded-xl object-contain" src={displayFeaturedProjects[0].image || displayFeaturedProjects[0].image_url || sate} alt={displayFeaturedProjects[0].title} />
+            ) : (
+              <div className="text-white text-center">
+                <h3 className="text-lg md:text-xl font-bold mb-2" style={{fontFamily: 'grand'}}>Coming Soon!</h3>
+                <p className="text-sm" style={{fontFamily: 'reg'}}>No featured project yet</p>
+              </div>
+            )}
+          </div>
+          
+          <div 
+            className="w-full aspect-video md:aspect-auto md:h-64 lg:h-132 lg:w-[65%] rounded-2xl bg-[#001F54] flex justify-center items-center cursor-pointer hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300"
+            onClick={() => displayFeaturedProjects[1] && setSelectedProject(displayFeaturedProjects[1])}
+          >
+            {displayFeaturedProjects[1] ? (
+              <img className="w-fit h-[63%] rounded-xl object-contain" src={displayFeaturedProjects[1].image || displayFeaturedProjects[1].image_url || scholar} alt={displayFeaturedProjects[1].title} />
+            ) : (
+              <div className="text-white text-center">
+                <h3 className="text-lg md:text-xl font-bold mb-2" style={{fontFamily: 'grand'}}>Coming Soon!</h3>
+                <p className="text-sm" style={{fontFamily: 'reg'}}>No featured project yet</p>
+              </div>
+            )}
+          </div>
+          
+          {/* Second row: larger project and coming soon box */}
+          <div 
+            className="w-full col-span-1 md:col-span-2 aspect-video md:h-64 lg:h-[70%] lg:w-[65%] rounded-2xl bg-yellow-500 flex justify-center items-center cursor-pointer hover:shadow-lg hover:shadow-yellow-300/30 transition-all duration-300 mt-4 md:mt-6"
+            onClick={() => displayFeaturedProjects[2] && setSelectedProject(displayFeaturedProjects[2])}
+          >
+            {displayFeaturedProjects[2] ? (
+              <img className="w-fit h-[61%] rounded-xl object-contain" src={displayFeaturedProjects[2].image || displayFeaturedProjects[2].image_url || Job} alt={displayFeaturedProjects[2].title} />
+            ) : (
+              <div className="text-white text-center">
+                <h3 className="text-lg md:text-xl font-bold mb-2" style={{fontFamily: 'grand'}}>Coming Soon!</h3>
+                <p className="text-sm" style={{fontFamily: 'reg'}}>No featured project yet</p>
+              </div>
+            )}
+          </div>
+          
+          {/* Fourth slot - always coming soon or fourth featured project */}
+          <div className="w-full col-span-1 md:col-span-2 aspect-[3/4] md:aspect-auto md:h-64 lg:h-118 lg:w-[30%] rounded-2xl bg-red-500 flex items-center justify-center relative flex-col overflow-hidden group mt-4 md:mt-6">
+            {displayFeaturedProjects[3] ? (
+              <div 
+                className="w-full h-full flex justify-center items-center cursor-pointer"
+                onClick={() => setSelectedProject(displayFeaturedProjects[3])}
+              >
+                <img className="w-fit h-[63%] rounded-xl object-contain" src={displayFeaturedProjects[3].image || displayFeaturedProjects[3].image_url || soon} alt={displayFeaturedProjects[3].title} />
+              </div>
+            ) : (
+              <>
+                <div className="absolute inset-0 bg-black h-full bg-opacity-50 flex flex-col items-center justify-center p-4">
+                  <h3 className="text-2xl md:text-4xl text-white font-bold mb-4" style={{fontFamily: 'grand'}}>Coming Soon!</h3>
+                  <p className="text-base md:text-xl text-white text-center px-6" style={{fontFamily: 'reg'}}>
+                    My next exciting project is currently in development
+                  </p>
+                </div>
+                <img className="opacity-40 object-cover lg:w-full md:w-fit" src={soon} alt="Coming Soon" />
+              </>
+            )}
+          </div>
+        </div>
       </div>
+
+        
+        {/* All Projects Grid */}
+        <div>
+          <ProjectCarousel 
+            projects={allProjects}
+            onProjectClick={setSelectedProject}
+          />
+        </div>
       
       {selectedProject && (
         <ProjectModal 

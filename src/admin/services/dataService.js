@@ -153,7 +153,9 @@ export class DataService {
         .from('projects')
         .select('*')
         .neq('status', 'archived')
-        .order('featured DESC, display_order, created_at DESC')
+        .order('featured', { ascending: false })
+        .order('display_order')
+        .order('created_at', { ascending: false })
       
       if (error) throw error
       return { success: true, data }
