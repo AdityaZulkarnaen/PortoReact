@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import pp1 from '../../assets/images/pp1.jpg';
 import pp2 from '../../assets/images/pp2.jpg';
 import pp3 from '../../assets/images/pp3.jpg';
@@ -46,7 +47,12 @@ const Home = () => {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-8 lg:space-x-16">
           {/* Image carousel - takes full width on mobile, then appropriate size on larger screens */}
-          <div className="w-full md:w-1/2 lg:w-2/5 h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] mb-8 md:mb-0 bg-white overflow-hidden relative rounded-lg">
+          <motion.div
+            className="w-full md:w-1/2 lg:w-2/5 h-[300px] sm:h-[400px] md:h-[450px] lg:h-[500px] mb-8 md:mb-0 bg-white overflow-hidden relative rounded-lg"
+            initial={{ opacity: 0, x: -60 }}
+            animate={isLoaded ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+          >
             {images.map((src, index) => (
               <img 
                 key={index}
@@ -87,10 +93,15 @@ const Home = () => {
                 />
               ))}
             </div>
-          </div>
+          </motion.div>
           
           {/* Text content */}
-          <div className="w-full md:w-1/2 lg:w-3/5">
+          <motion.div
+            className="w-full md:w-1/2 lg:w-3/5"
+            initial={{ opacity: 0, x: 60 }}
+            animate={isLoaded ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
+          >
             <h1 className="text-4xl sm:text-5xl md:text-6xl text-white mb-6 md:mb-8" style={{fontFamily: 'pp'}}>
               Hi there!👋 My name is Adit.
             </h1>
@@ -105,7 +116,7 @@ const Home = () => {
             >
               See my resume →
             </a>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

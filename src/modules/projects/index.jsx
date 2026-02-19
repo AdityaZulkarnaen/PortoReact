@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { DataService } from '../../admin/services/dataService';
 import sate from '../../assets/images/sate.png';
 import scholar from '../../assets/images/scholar.png';
@@ -345,12 +346,25 @@ const Projects = () => {
   return (
     <section id="projects" className="w-full min-h-screen px-4 md:px-8 lg:px-12 py-16 md:py-20">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-5xl md:text-6xl text-white mb-12 md:mb-16" style={{fontFamily: 'grand'}}>
+        <motion.h2
+          className="text-5xl md:text-6xl text-white mb-12 md:mb-16"
+          style={{fontFamily: 'grand'}}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          viewport={{ once: false, margin: '-80px' }}
+        >
           Recent Works
-        </h2>
+        </motion.h2>
         
         {/* Featured Projects Carousel */}
-        <div className="flex flex-wrap justify-center gap-[5%] max-w-7xl justify-self-center space-y-[5%] h-full mt-15'">
+        <motion.div
+          className="flex flex-wrap justify-center gap-[5%] max-w-7xl justify-self-center space-y-[5%] h-full mt-15'"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: 'easeOut' }}
+          viewport={{ once: false, margin: '-100px' }}
+        >
           {/* First project - 3:4 aspect ratio on mobile */}
           <div 
             className="w-full aspect-[3/4] md:aspect-auto md:h-64 lg:h-132 lg:w-[30%] rounded-2xl flex justify-center items-center bg-[#FF6507] cursor-pointer hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300"
@@ -416,17 +430,22 @@ const Projects = () => {
               </>
             )}
           </div>
-        </div>
+        </motion.div>
       </div>
 
         
         {/* All Projects Grid */}
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          viewport={{ once: false, margin: '-80px' }}
+        >
           <ProjectCarousel 
             projects={allProjects}
             onProjectClick={setSelectedProject}
           />
-        </div>
+        </motion.div>
       
       {selectedProject && (
         <ProjectModal 

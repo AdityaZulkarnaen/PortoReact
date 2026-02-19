@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { DataService } from '../../admin/services/dataService';
 import github from '../../assets/icon/github-logo.png';
 import react from '../../assets/icon/react.svg';
@@ -75,15 +76,28 @@ const Skills = () => {
   return (
     <section id="skills" className="w-full min-h-screen py-16 md:py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
-        <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white text-center mb-16" style={{ fontFamily: 'grand' }}>
+        <motion.h2
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white text-center mb-16"
+          style={{ fontFamily: 'grand' }}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          viewport={{ once: false, margin: '-80px' }}
+        >
           My Specialities
-        </h2>
+        </motion.h2>
       </div>
 
       <div className="flex flex-col gap-5 mt-32">
-        <MarqueeRow skills={skills} direction="left"  speed={75} />
-        <MarqueeRow skills={skills} direction="right" speed={90} />
-        <MarqueeRow skills={skills} direction="left"  speed={85} />
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: 'easeOut' }} viewport={{ once: false }}>
+          <MarqueeRow skills={skills} direction="left"  speed={75} />
+        </motion.div>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }} viewport={{ once: false }}>
+          <MarqueeRow skills={skills} direction="right" speed={90} />
+        </motion.div>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }} viewport={{ once: false }}>
+          <MarqueeRow skills={skills} direction="left"  speed={85} />
+        </motion.div>
       </div>
     </section>
   );

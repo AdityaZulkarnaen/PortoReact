@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { DataService } from '../../admin/services/dataService';
 
 const fallbackExperiences = [
@@ -43,14 +44,20 @@ const formatPeriod = (exp) => {
   return start && end ? `${start} - ${end}` : start || end;
 };
 
-const ExperienceItem = ({ exp }) => (
-  <div className="mb-12">
+const ExperienceItem = ({ exp, index = 0 }) => (
+  <motion.div
+    className="mb-12"
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.55, delay: index * 0.12, ease: 'easeOut' }}
+    viewport={{ once: false, margin: '-60px' }}
+  >
     <h3 className="text-2xl md:text-3xl text-white" style={{fontFamily: 'pp'}}>{exp.position}</h3>
     <div className="text-xl md:text-2xl text-white" style={{fontFamily: 'reg'}}>{exp.company}</div>
     <div className="text-lg md:text-xl text-gray-400" style={{fontFamily: 'reg'}}>{formatPeriod(exp)}</div>
     <div className="text-base md:text-xl text-white mt-3 md:mt-5" style={{fontFamily: 'reg'}}>{exp.description}</div>
     <div className="w-full h-[1px] bg-gray-400 mt-3 md:mt-4"></div>
-  </div>
+  </motion.div>
 );
 
 const Experience = () => {
@@ -78,9 +85,16 @@ const Experience = () => {
   return (
     <section id="experience" className="w-full min-h-screen px-4 md:px-8 lg:px-12 py-16 md:py-20">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-5xl md:text-6xl text-white mb-12 md:mb-16" style={{fontFamily: 'grand'}}>
+        <motion.h2
+          className="text-5xl md:text-6xl text-white mb-12 md:mb-16"
+          style={{fontFamily: 'grand'}}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          viewport={{ once: false, margin: '-80px' }}
+        >
           Past Experiences
-        </h2>
+        </motion.h2>
         
         {loading ? (
           <div className="animate-pulse space-y-8">
@@ -95,8 +109,8 @@ const Experience = () => {
           </div>
         ) : (
           <div className="space-y-8">
-            {experiences.map((exp) => (
-              <ExperienceItem key={exp.id} exp={exp} />
+            {experiences.map((exp, index) => (
+              <ExperienceItem key={exp.id} exp={exp} index={index} />
             ))}
           </div>
         )}

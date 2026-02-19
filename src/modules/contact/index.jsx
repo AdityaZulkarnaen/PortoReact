@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -43,15 +44,36 @@ const Contact = () => {
   return (
     <section id="contact" className="w-full min-h-screen px-4 md:px-8 lg:px-12 py-16 md:py-20 flex flex-col justify-center bg-[#1a1a1a]">
       <div className="max-w-3xl mx-auto w-full space-y-8">
-        <h2 className="text-4xl sm:text-5xl md:text-6xl text-white font-bold" style={{fontFamily: 'grand'}}>
+        <motion.h2
+          className="text-4xl sm:text-5xl md:text-6xl text-white font-bold"
+          style={{fontFamily: 'grand'}}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          viewport={{ once: false, margin: '-80px' }}
+        >
           Get In Touch
-        </h2>
+        </motion.h2>
         
-        <div className="text-white text-lg md:text-xl mb-8" style={{fontFamily: 'reg'}}>
+        <motion.div
+          className="text-white text-lg md:text-xl mb-8"
+          style={{fontFamily: 'reg'}}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.15, ease: 'easeOut' }}
+          viewport={{ once: false }}
+        >
           Have a project in mind or just want to say hello? Feel free to send me a message!
-        </div>
+        </motion.div>
         
-        <form onSubmit={handleSubmit} className="w-full space-y-6">
+        <motion.form
+          onSubmit={handleSubmit}
+          className="w-full space-y-6"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25, ease: 'easeOut' }}
+          viewport={{ once: false }}
+        >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <div>
               <label htmlFor="name" className="text-white text-base md:text-lg block mb-2" style={{fontFamily: 'reg'}}>Name</label>
@@ -117,7 +139,7 @@ const Contact = () => {
               </div>
             )}
           </div>
-        </form>
+        </motion.form>
       </div>
     </section>
   );
