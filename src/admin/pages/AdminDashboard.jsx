@@ -61,9 +61,9 @@ const AdminDashboard = () => {
                   Add, edit, and organize your technical skills
                 </p>
                 <div className="mt-4">
-                  <button className="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700">
+                  <Link to="/admin/skills" className="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 inline-block">
                     Manage Skills
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

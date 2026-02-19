@@ -104,7 +104,7 @@ const ProjectCarousel = ({ projects, onProjectClick }) => {
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`w-2 h-2 rounded-full transition-colors ${
-              index === currentIndex ? 'bg-blue-500' : 'bg-gray-600'
+              index === currentIndex ? 'bg-[#e1ff00]' : 'bg-gray-600'
             }`}
           />
         ))}

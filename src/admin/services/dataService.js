@@ -92,7 +92,21 @@ export class DataService {
         .from('skills')
         .select('*')
         .eq('is_active', true)
-        .order('category, display_order')
+        .order('display_order')
+      
+      if (error) throw error
+      return { success: true, data }
+    } catch (error) {
+      return { success: false, error: error.message }
+    }
+  }
+
+  static async getAllSkills() {
+    try {
+      const { data, error } = await supabase
+        .from('skills')
+        .select('*')
+        .order('display_order')
       
       if (error) throw error
       return { success: true, data }

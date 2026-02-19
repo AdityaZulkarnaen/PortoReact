@@ -5,6 +5,7 @@ import AdminLogin from './admin/pages/AdminLogin'
 import AdminDashboard from './admin/pages/AdminDashboard'
 import ProjectsManager from './admin/pages/ProjectsManager'
 import ExperienceManager from './admin/pages/ExperienceManager'
+import SkillsManager from './admin/pages/SkillsManager'
 import Navbar from './components/Navbar.jsx'
 import Noise from './components/Noise.jsx'
 import Hero from './modules/hero'
@@ -51,6 +52,11 @@ const App = () => {
           <Route path="/admin/experience" element={
             <ProtectedRoute>
               <ExperienceManager />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/skills" element={
+            <ProtectedRoute>
+              <SkillsManager />
             </ProtectedRoute>
           } />
         </Routes>

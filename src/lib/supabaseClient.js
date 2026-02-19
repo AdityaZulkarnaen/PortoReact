@@ -15,7 +15,8 @@ export const IMAGE_TYPES = {
   CAROUSEL: 'carousel', 
   THUMBNAIL: 'thumbnail',
   PROFILE: 'profile',
-  PROJECT: 'project'
+  PROJECT: 'project',
+  ICON: 'icon'
 }
 
 // Compression settings by image type
@@ -49,6 +50,12 @@ export const getCompressionSettings = (imageType) => {
       maxSizeMB: 2,
       maxWidthOrHeight: 1200,
       quality: 0.85,
+      skipCompression: false
+    },
+    [IMAGE_TYPES.ICON]: {
+      maxSizeMB: 0.2,
+      maxWidthOrHeight: 128,
+      quality: 0.9,
       skipCompression: false
     }
   }
