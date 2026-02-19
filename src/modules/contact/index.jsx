@@ -106,7 +106,7 @@ const Contact = () => {
             </button>
             
             {status === 'success' && (
-              <div className="mt-4 p-3 bg-green-500 bg-opacity-20 border border-green-500 text-green-500 rounded-lg">
+              <div className="mt-4 p-3 bg-green-500 bg-opacity-20 border border-green-500 text-white rounded-lg">
                 Your message has been sent successfully!
               </div>
             )}
