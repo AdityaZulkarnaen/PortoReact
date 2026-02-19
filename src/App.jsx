@@ -4,6 +4,7 @@ import { ProtectedRoute } from './admin/components/ProtectedRoute'
 import AdminLogin from './admin/pages/AdminLogin'
 import AdminDashboard from './admin/pages/AdminDashboard'
 import ProjectsManager from './admin/pages/ProjectsManager'
+import ExperienceManager from './admin/pages/ExperienceManager'
 import Navbar from './components/Navbar.jsx'
 import Noise from './components/Noise.jsx'
 import Hero from './modules/hero'
@@ -45,6 +46,11 @@ const App = () => {
           <Route path="/admin/projects" element={
             <ProtectedRoute>
               <ProjectsManager />
+            </ProtectedRoute>
+          } />
+          <Route path="/admin/experience" element={
+            <ProtectedRoute>
+              <ExperienceManager />
             </ProtectedRoute>
           } />
         </Routes>

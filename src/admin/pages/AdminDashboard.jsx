@@ -1,6 +1,7 @@
 import { useAuth } from '../../contexts/AuthContext'
 import { Link } from 'react-router-dom'
 
+
 const AdminDashboard = () => {
   const { user, signOut } = useAuth()
 
@@ -90,9 +91,9 @@ const AdminDashboard = () => {
                   Update your work history and experiences
                 </p>
                 <div className="mt-4">
-                  <button className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700">
+                  <Link to="/admin/experience" className="bg-indigo-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-indigo-700 inline-block">
                     Manage Experience
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -223,7 +223,9 @@ export class DataService {
       const { data, error } = await supabase
         .from('experience')
         .select('*')
-        .order('is_current DESC, end_date DESC NULLS FIRST, start_date DESC')
+        .order('display_order')
+        .order('is_current', { ascending: false })
+        .order('start_date', { ascending: false })
       
       if (error) throw error
       return { success: true, data }
