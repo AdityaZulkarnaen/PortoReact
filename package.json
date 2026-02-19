@@ -10,9 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.97.0",
     "@tailwindcss/vite": "^4.0.7",
+    "@tanstack/react-query": "^5.90.21",
+    "browser-image-compression": "^2.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-router-dom": "^7.13.0",
     "tailwindcss": "^4.0.7"
   },
   "devDependencies": {
