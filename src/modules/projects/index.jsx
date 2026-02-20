@@ -60,8 +60,8 @@ const ProjectCarousel = ({ projects, onProjectClick }) => {
           {getVisibleProjects().map((project, index) => (
             <div
               key={`${project.id}-${currentIndex}`}
-              className={`flex-shrink-0 w-full md:w-[32.1%] bg-gray-800 rounded-xl overflow-hidden cursor-pointer hover:scale-100 transition-transform duration-300 ${
-                index === 1 ? 'md:scale-95' : 'md:scale-95'
+              className={`flex-shrink-0 w-full md:w-[32.1%] bg-gray-800 rounded-xl overflow-hidden cursor-pointer transition-transform duration-300 md:scale-95 ${
+                index > 0 ? 'hidden md:flex md:flex-col' : ''
               }`}
               onClick={() => onProjectClick(project)}
             >
