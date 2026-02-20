@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Marquee from 'react-fast-marquee';
 import { DataService } from '../../admin/services/dataService';
 import github from '../../assets/icon/github-logo.png';
 import react from '../../assets/icon/react.svg';
@@ -38,30 +39,15 @@ const SkillItem = ({ icon, name }) => (
   </div>
 );
 
-const MarqueeRow = ({ skills, direction = 'left', speed = 30 }) => {
-  // Duplicate enough times to fill screen seamlessly
-  const repeated = [...skills, ...skills, ...skills, ...skills, ...skills, ...skills, ...skills, ...skills, ...skills, ...skills];
-  const animClass = direction === 'left' ? 'animate-marquee-left' : 'animate-marquee-right';
-
-  return (
-    <div className="overflow-hidden w-full">
-      <div
-        className={`flex gap-4 w-max ${animClass}`}
-        style={{
-          '--speed': `${speed}s`,
-          animationDuration: `${speed}s`,
-          WebkitAnimationDuration: `${speed}s`,
-          WebkitTransform: 'translateZ(0)',
-          transform: 'translateZ(0)',
-        }}
-      >
-        {repeated.map((skill, i) => (
-          <SkillItem key={i} icon={skill.icon} name={skill.name} />
-        ))}
+const MarqueeRow = ({ skills, direction = 'left', speed = 50 }) => (
+  <Marquee direction={direction} speed={speed} gradient={false}>
+    {skills.map((skill, i) => (
+      <div key={i} className="mx-2">
+        <SkillItem icon={skill.icon} name={skill.name} />
       </div>
-    </div>
-  );
-};
+    ))}
+  </Marquee>
+);
 
 const Skills = () => {
   const [skills, setSkills] = useState(fallbackSkills);
@@ -99,13 +85,13 @@ const Skills = () => {
 
       <div className="flex flex-col gap-5 mt-32">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: 'easeOut' }} viewport={{ once: false }}>
-          <MarqueeRow skills={skills} direction="left"  speed={75} />
+          <MarqueeRow skills={skills} direction="left"  speed={50} />
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }} viewport={{ once: false }}>
-          <MarqueeRow skills={skills} direction="right" speed={90} />
+          <MarqueeRow skills={skills} direction="right" speed={40} />
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }} viewport={{ once: false }}>
-          <MarqueeRow skills={skills} direction="left"  speed={85} />
+          <MarqueeRow skills={skills} direction="left"  speed={45} />
         </motion.div>
       </div>
     </section>
