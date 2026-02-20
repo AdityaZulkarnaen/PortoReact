@@ -128,16 +128,32 @@
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
+@-webkit-keyframes marqueeLeft {
+  from { -webkit-transform: translateX(0); }
+  to   { -webkit-transform: translateX(-50%); }
+}
 
 @keyframes marqueeRight {
   from { transform: translateX(-50%); }
   to   { transform: translateX(0); }
 }
+@-webkit-keyframes marqueeRight {
+  from { -webkit-transform: translateX(-50%); }
+  to   { -webkit-transform: translateX(0); }
+}
 
 .animate-marquee-left {
   animation: marqueeLeft var(--speed, 30s) linear infinite;
+  -webkit-animation: marqueeLeft var(--speed, 30s) linear infinite;
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 .animate-marquee-right {
   animation: marqueeRight var(--speed, 30s) linear infinite;
+  -webkit-animation: marqueeRight var(--speed, 30s) linear infinite;
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }

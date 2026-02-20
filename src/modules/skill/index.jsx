@@ -45,7 +45,16 @@ const MarqueeRow = ({ skills, direction = 'left', speed = 30 }) => {
 
   return (
     <div className="overflow-hidden w-full">
-      <div className={`flex gap-4 w-max ${animClass}`} style={{ '--speed': `${speed}s` }}>
+      <div
+        className={`flex gap-4 w-max ${animClass}`}
+        style={{
+          '--speed': `${speed}s`,
+          animationDuration: `${speed}s`,
+          WebkitAnimationDuration: `${speed}s`,
+          WebkitTransform: 'translateZ(0)',
+          transform: 'translateZ(0)',
+        }}
+      >
         {repeated.map((skill, i) => (
           <SkillItem key={i} icon={skill.icon} name={skill.name} />
         ))}
