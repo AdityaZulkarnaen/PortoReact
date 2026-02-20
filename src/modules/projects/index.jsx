@@ -34,7 +34,7 @@ const ProjectCarousel = ({ projects, onProjectClick }) => {
   };
 
   return (
-    <div className="relative w-[90%] justify-self-center mt-12">
+    <div className="relative w-[90%] mx-auto mt-12">
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-3xl md:text-4xl text-white" style={{fontFamily: 'grand'}}>
           All Projects
