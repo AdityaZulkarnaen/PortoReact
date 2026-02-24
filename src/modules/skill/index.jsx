@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import Marquee from 'react-fast-marquee';
+import { useState, useEffect, useRef, useMemo } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { DataService } from '../../admin/services/dataService';
 import github from '../../assets/icon/github-logo.png';
 import react from '../../assets/icon/react.svg';
@@ -39,18 +38,51 @@ const SkillItem = ({ icon, name }) => (
   </div>
 );
 
-const MarqueeRow = ({ skills, direction = 'left', speed = 50 }) => (
-  <Marquee direction={direction} speed={speed} gradient={false}>
-    {skills.map((skill, i) => (
-      <div key={i} className="mx-2">
-        <SkillItem icon={skill.icon} name={skill.name} />
-      </div>
-    ))}
-  </Marquee>
-);
+const ParallaxRow = ({ skills, x, reversed = false }) => {
+  const ordered = reversed ? [...skills].reverse() : skills;
+  const repeated = [...ordered, ...ordered, ...ordered, ...ordered, ...ordered, ...ordered, ...ordered, ...ordered];
+  return (
+    <motion.div style={{ x }} className="flex gap-4 w-max">
+      {repeated.map((skill, i) => (
+        <SkillItem key={i} icon={skill.icon} name={skill.name} />
+      ))}
+    </motion.div>
+  );
+};
 
 const Skills = () => {
   const [skills, setSkills] = useState(fallbackSkills);
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const xRow1 = useTransform(scrollYProgress, (v) => v * (window.innerWidth < 768 ? -900 : -300));
+  const xRow2 = useTransform(scrollYProgress, (v) => -600 + v * (window.innerWidth < 768 ? 850 : 300));
+  const xRow3 = useTransform(scrollYProgress, (v) => v * (window.innerWidth < 768 ? -800 : -200));
+
+  const shuffledSkills = useMemo(() => {
+    return [...skills].sort(() => Math.random() - 0.5);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [skills.length]);
+
+  const mobileChunks = useMemo(() => {
+    const third = Math.ceil(skills.length / 3);
+    return [
+      skills.slice(0, third),
+      skills.slice(third, third * 2),
+      skills.slice(third * 2),
+    ];
+  }, [skills]);
 
   useEffect(() => {
     const loadSkills = async () => {
@@ -63,13 +95,12 @@ const Skills = () => {
         }));
         setSkills(mapped);
       }
-      // on failure or empty, keep fallback
     };
     loadSkills();
   }, []);
 
   return (
-    <section id="skills" className="w-full min-h-screen py-16 md:py-20 overflow-hidden">
+    <section ref={sectionRef} id="skills" className="w-full min-h-screen py-16 md:py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
         <motion.h2
           className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white text-center mb-16"
@@ -83,16 +114,10 @@ const Skills = () => {
         </motion.h2>
       </div>
 
-      <div className="flex flex-col gap-5 mt-32">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: 'easeOut' }} viewport={{ once: false }}>
-          <MarqueeRow skills={skills} direction="left"  speed={50} />
-        </motion.div>
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }} viewport={{ once: false }}>
-          <MarqueeRow skills={skills} direction="right" speed={40} />
-        </motion.div>
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2, ease: 'easeOut' }} viewport={{ once: false }}>
-          <MarqueeRow skills={skills} direction="left"  speed={45} />
-        </motion.div>
+      <div className="flex flex-col gap-5 mt-32 overflow-hidden">
+        <ParallaxRow skills={isMobile ? mobileChunks[0] : skills} x={xRow1} />
+        <ParallaxRow skills={isMobile ? mobileChunks[1] : skills} x={xRow2} reversed />
+        <ParallaxRow skills={isMobile ? mobileChunks[2] : shuffledSkills} x={xRow3} />
       </div>
     </section>
   );
