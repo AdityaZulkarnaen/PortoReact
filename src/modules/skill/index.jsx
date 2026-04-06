@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { DataService } from '../../admin/services/dataService';
 import github from '../../assets/icon/github-logo.png';
 import react from '../../assets/icon/react.svg';
@@ -29,6 +31,8 @@ const fallbackSkills = [
   { id: 'next',     icon: next,     name: 'Next JS' },
 ];
 
+gsap.registerPlugin(ScrollTrigger);
+
 
 
 const SkillItem = ({ icon, name }) => (
@@ -38,15 +42,15 @@ const SkillItem = ({ icon, name }) => (
   </div>
 );
 
-const ParallaxRow = ({ skills, x, reversed = false }) => {
+const ParallaxRow = ({ skills, rowRef, reversed = false }) => {
   const ordered = reversed ? [...skills].reverse() : skills;
   const repeated = [...ordered, ...ordered, ...ordered, ...ordered, ...ordered, ...ordered, ...ordered, ...ordered];
   return (
-    <motion.div style={{ x }} className="flex gap-4 w-max">
+    <div ref={rowRef} className="flex gap-4 w-max">
       {repeated.map((skill, i) => (
         <SkillItem key={i} icon={skill.icon} name={skill.name} />
       ))}
-    </motion.div>
+    </div>
   );
 };
 
@@ -54,21 +58,13 @@ const Skills = () => {
   const [skills, setSkills] = useState(fallbackSkills);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768);
   const sectionRef = useRef(null);
+  const rowRefs = useRef([]);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const xRow1 = useTransform(scrollYProgress, (v) => v * (window.innerWidth < 768 ? -900 : -300));
-  const xRow2 = useTransform(scrollYProgress, (v) => -600 + v * (window.innerWidth < 768 ? 850 : 300));
-  const xRow3 = useTransform(scrollYProgress, (v) => v * (window.innerWidth < 768 ? -800 : -200));
 
   const shuffledSkills = useMemo(() => {
     return [...skills].sort(() => Math.random() - 0.5);
@@ -83,6 +79,68 @@ const Skills = () => {
       skills.slice(third * 2),
     ];
   }, [skills]);
+
+  const row1Skills = isMobile ? mobileChunks[0] : skills;
+  const row2Skills = isMobile ? mobileChunks[1] : skills;
+  const row3Skills = isMobile ? mobileChunks[2] : shuffledSkills;
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const distances = isMobile
+      ? { row1: -900, row2Start: -600, row2Delta: 850, row3: -800 }
+      : { row1: -300, row2Start: -600, row2Delta: 300, row3: -200 };
+
+    const ctx = gsap.context(() => {
+      const rows = rowRefs.current;
+
+      if (rows[0]) {
+        gsap.set(rows[0], { x: 0 });
+        gsap.to(rows[0], {
+          x: distances.row1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
+      }
+
+      if (rows[1]) {
+        gsap.set(rows[1], { x: distances.row2Start });
+        gsap.to(rows[1], {
+          x: distances.row2Start + distances.row2Delta,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
+      }
+
+      if (rows[2]) {
+        gsap.set(rows[2], { x: 0 });
+        gsap.to(rows[2], {
+          x: distances.row3,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true,
+          },
+        });
+      }
+    }, sectionRef);
+
+    return () => {
+      ctx.revert();
+    };
+  }, [isMobile, row1Skills, row2Skills, row3Skills]);
 
   useEffect(() => {
     const loadSkills = async () => {
@@ -115,9 +173,9 @@ const Skills = () => {
       </div>
 
       <div className="flex flex-col gap-5 mt-32 overflow-hidden">
-        <ParallaxRow skills={isMobile ? mobileChunks[0] : skills} x={xRow1} />
-        <ParallaxRow skills={isMobile ? mobileChunks[1] : skills} x={xRow2} reversed />
-        <ParallaxRow skills={isMobile ? mobileChunks[2] : shuffledSkills} x={xRow3} />
+        <ParallaxRow skills={row1Skills} rowRef={(el) => { rowRefs.current[0] = el; }} />
+        <ParallaxRow skills={row2Skills} rowRef={(el) => { rowRefs.current[1] = el; }} reversed />
+        <ParallaxRow skills={row3Skills} rowRef={(el) => { rowRefs.current[2] = el; }} />
       </div>
     </section>
   );
